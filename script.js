@@ -3,8 +3,9 @@ const toTopButton = document.getElementById("to_top");
 const navToggle = document.getElementById("nav_toggle");
 const siteNav = document.getElementById("site_nav");
 const contactForm = document.getElementById("contact_form");
-const expToggle = document.getElementById("exp_toggle");
 const expList = document.getElementById("exp_list");
+const expTabs = document.querySelectorAll(".exp-tab");
+const themeToggle = document.getElementById("theme_toggle");
 const carousel = document.getElementById("about_carousel");
 const carouselDots = document.getElementById("carousel_dots");
 const carouselCaption = document.getElementById("carousel_caption");
@@ -94,21 +95,31 @@ function createRevealObserver() {
   });
 }
 
-function toggleExperience() {
-  if (!expToggle || !expList) {
+function selectExperienceTab(tab) {
+  if (!expList) {
     return;
   }
 
-  const isExpanded = expList.classList.toggle("expanded");
+  expTabs.forEach((item) => {
+    const isActive = item === tab;
+    item.classList.toggle("is-active", isActive);
+    item.setAttribute("aria-selected", String(isActive));
+  });
 
-  expToggle.setAttribute(
-    "aria-expanded",
-    isExpanded
-  );
+  expList.dataset.active = tab.dataset.filter;
+}
 
-  expToggle.firstChild.textContent = isExpanded
-    ? "View less "
-    : "View more ";
+function toggleTheme() {
+  const root = document.documentElement;
+  const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+
+  root.dataset.theme = nextTheme;
+
+  try {
+    localStorage.setItem("theme", nextTheme);
+  } catch (error) {
+    // Storage unavailable; theme still applies for this visit.
+  }
 }
 
 function goToCarouselSlide(carouselState, nextIndex) {
@@ -284,8 +295,12 @@ if (siteNav) {
   });
 }
 
-if (expToggle) {
-  expToggle.addEventListener("click", toggleExperience);
+expTabs.forEach((tab) => {
+  tab.addEventListener("click", () => selectExperienceTab(tab));
+});
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", toggleTheme);
 }
 
 if (contactForm) {
