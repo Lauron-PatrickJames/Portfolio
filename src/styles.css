@@ -540,16 +540,18 @@ nav a.active {
   gap: 4px;
 }
 
-.carousel-dots span {
+.carousel-dots button {
   flex: 1;
   height: 2px;
+  padding: 0;
+  border: none;
   border-radius: 2px;
   background: rgba(255, 255, 255, 0.35);
   cursor: pointer;
   transition: background 0.3s;
 }
 
-.carousel-dots span.is-active {
+.carousel-dots button.is-active {
   background: #fff;
 }
 
