@@ -1,54 +1,46 @@
 import { useState } from "react";
-import { experience, type ExperienceType } from "../data/content";
-import { Reveal, Section } from "./Reveal";
-
-const tabs: { value: ExperienceType; label: string }[] = [
-  { value: "work", label: "Work" },
-  { value: "leadership", label: "Leadership" }
-];
+import { experience, visibleExperience } from "../data/content";
+import { Reveal } from "./Reveal";
+import { Section } from "./Section";
 
 export function Experience() {
-  const [active, setActive] = useState<ExperienceType>("work");
-  const rows = experience.filter((item) => item.type === active);
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <Section id="experience" index="02" title="Experience">
-      <Reveal className="exp-tabs">
-        <div role="tablist" aria-label="Experience type" style={{ display: "contents" }}>
-          {tabs.map((tab) => (
-            <button
-              key={tab.value}
-              className={`exp-tab ${active === tab.value ? "is-active" : ""}`.trim()}
-              type="button"
-              role="tab"
-              aria-selected={active === tab.value}
-              aria-controls="exp_list"
-              onClick={() => setActive(tab.value)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </Reveal>
-
-      <Reveal className="exp-list">
-        <div id="exp_list" role="tabpanel">
-          {rows.map((item) => (
-            <article className="exp-row" key={item.role}>
-              <div className="exp-date mono">{item.dates}</div>
-              <div className="exp-body">
+    <Section id="experience" index="03" title="Experience">
+      <Reveal className={`exp-list ${expanded ? "expanded" : ""}`.trim()} id="exp_list">
+        {experience.map((item, i) => (
+          <article
+            className={`exp-card ${i >= visibleExperience ? "exp-extra" : ""}`.trim()}
+            key={item.role}
+          >
+            <div className="exp-head">
+              <div>
                 <h3>{item.role}</h3>
                 <p className="exp-org">{item.org}</p>
-                <ul className="exp-bullets">
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
               </div>
-            </article>
-          ))}
-        </div>
+              <span className="exp-date mono">{item.dates}</span>
+            </div>
+            <ul className="exp-bullets">
+              {item.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </Reveal>
+
+      {experience.length > visibleExperience && (
+        <button
+          className="view-more mono"
+          type="button"
+          aria-expanded={expanded}
+          aria-controls="exp_list"
+          onClick={() => setExpanded((value) => !value)}
+        >
+          {expanded ? "View less" : "View more"} <span className="arrow" aria-hidden="true">↓</span>
+        </button>
+      )}
     </Section>
   );
 }

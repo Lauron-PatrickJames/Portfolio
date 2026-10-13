@@ -1,10 +1,7 @@
-// All site content lives here. Edit this file to update the portfolio —
+// All site content lives here. Edit this file to update the portfolio;
 // the components only handle layout.
 
-export type ExperienceType = "work" | "leadership";
-
 export interface Experience {
-  type: ExperienceType;
   role: string;
   org: string;
   dates: string;
@@ -13,116 +10,111 @@ export interface Experience {
 
 export interface Project {
   name: string;
-  kind: string;
   dates: string;
-  summary: string;
+  subtitle: string;
   bullets: string[];
   stack: string[];
-}
-
-export interface Education {
-  years: string;
-  school: string;
-  note: string;
-  stats: { highlight?: string; text: string }[];
-}
-
-export interface Listed {
-  name: string;
-  meta?: string;
 }
 
 export const profile = {
   firstName: "Patrick James",
   lastName: "Lauron",
-  nickname: "Pat",
-  initials: "PJL",
-  location: "Bacoor, Cavite · PH",
-  email: "pjameslauron@gmail.com",
-  phone: "+63 949 943 4733",
-  phoneHref: "tel:+639499434733",
+  eyebrow: "BSIT · Web Development",
   role:
-    "Full-stack developer and backend AI engineer. I build web platforms end to end and work on the retrieval and ranking systems behind AI search — and spend as much time behind a camera as behind a keyboard.",
-  meta: [
-    { label: "Now", value: "Backend AI Engineering, FlyRank AI" },
-    { label: "Studying", value: "BSIT Web Dev, DLSU-D · ’27" },
-    { label: "Standing", value: "3.64 GPA · First Honors Dean’s Lister" }
-  ],
-  portrait: {
-    src: "/assets/pic_1.jpg",
-    alt: "Patrick James Lauron looking at a photo exhibit",
-    caption: "Pat, at an exhibit"
-  }
+    "Full-stack developer and backend AI engineer at FlyRank AI, studying at CICS, De La Salle University – Dasmariñas. I spend as much time behind a camera as behind a keyboard.",
+  email: "pjameslauron@gmail.com",
+  phone: "(+63) 949 943 4733",
+  phoneHref: "tel:+639499434733",
+  linkedInShort: "in/patjeyms",
+  portrait: { src: "/assets/pic_1.jpg", alt: "Patrick James Lauron" }
 };
 
-export const socials = [
-  { label: "LinkedIn", short: "in/patjeyms", href: "https://www.linkedin.com/in/patjeyms/" },
-  { label: "Instagram", href: "https://www.instagram.com/patjeyms/" },
-  { label: "Facebook", href: "https://www.facebook.com/patjeyms" }
-];
-
 export const about = {
-  lede: {
-    before: "Hi, I’m Patrick — ",
-    accent: "Pat",
-    after:
-      " for short. I’m a BS Information Technology student majoring in Web Development, working across the stack from React front ends to Node APIs and Python ML pipelines."
-  },
-  body:
-    "I’m also a Legislative Councilor in the CICS Student Government, where I draft and review ordinances for the college. Outside of code, I enjoy capturing moments through photography and visual storytelling, exploring coffee shops, scenic drives, and long playlists to work by.",
+  paragraphs: [
+    "Hi, I'm Patrick (or Pat for short) — a 21-year-old BS Information Technology student majoring in Web Development, working as a full-stack developer and backend AI engineer. I enjoy capturing moments through photography and expressing creativity through visual storytelling.",
+    "Outside of code, I love exploring coffee shops, scenic drives, and long playlists to work by."
+  ],
   gallery: [
-    { src: "/assets/photography.jpg", alt: "Photography sample", label: "Photography" },
-    { src: "/assets/photography_3.jpg", alt: "Photography sample", label: "Photography" },
-    { src: "/assets/explore_1.jpg", alt: "Exploring sample", label: "Exploring" },
-    { src: "/assets/explore_2.jpg", alt: "Exploring sample", label: "Exploring" },
-    { src: "/assets/driving.jpg", alt: "Driving sample", label: "Driving" },
-    { src: "/assets/driving_2.jpg", alt: "Driving sample", label: "Driving" }
+    { src: "/assets/photography.jpg", alt: "Photography sample", label: "PHOTOGRAPHY" },
+    { src: "/assets/photography_3.jpg", alt: "Photography sample", label: "PHOTOGRAPHY" },
+    { src: "/assets/explore_1.jpg", alt: "Exploring sample", label: "EXPLORING" },
+    { src: "/assets/explore_2.jpg", alt: "Exploring sample", label: "EXPLORING" },
+    { src: "/assets/driving.jpg", alt: "Driving sample", label: "DRIVING" },
+    { src: "/assets/driving_2.jpg", alt: "Driving sample", label: "DRIVING" }
   ]
 };
 
+export const socials = [
+  { short: "IG", label: "Instagram", href: "https://www.instagram.com/patjeyms/" },
+  { short: "FB", label: "Facebook", href: "https://www.facebook.com/patjeyms" },
+  { short: "in", label: "LinkedIn", href: "https://www.linkedin.com/in/patjeyms/" }
+];
+
+export const skills = [
+  {
+    group: "Web Development",
+    items: ["React.js", "TypeScript", "Node.js", "Express.js", "PHP", "C#", ".NET", "Tailwind CSS"]
+  },
+  {
+    group: "Databases & Tools",
+    items: ["MongoDB", "Git", "GitHub", "Microsoft Excel", "Microsoft Word"]
+  },
+  {
+    group: "Media & Design",
+    items: ["Video Editing", "Image Editing", "Photography", "Videography", "Adobe Creative Suite"]
+  },
+  {
+    group: "Leadership",
+    items: [
+      "Organizational Leadership",
+      "Legislative Drafting & Ordinance Review",
+      "Committee Management",
+      "Event Documentation Coordination"
+    ]
+  }
+];
+
+// The first `visibleExperience` entries show by default; the rest sit behind "View more".
+export const visibleExperience = 2;
+
 export const experience: Experience[] = [
   {
-    type: "work",
     role: "Backend AI Engineering",
-    org: "FlyRank AI · Remote",
-    dates: "Sep 2026 — Present",
+    org: "FlyRank AI, Remote",
+    dates: "Sep '26 – Present",
     bullets: [
-      "Researched and benchmarked state-of-the-art ML models, LLMs, and retrieval techniques to improve AI search and ranking systems",
-      "Built and evaluated Python ML pipelines for RAG and NLP workflows, using evaluation metrics and error analysis on large-scale datasets",
-      "Prototyped and validated AI solutions with ML engineers and developers, turning research findings into production-ready features"
+      "Benchmarked ML models, LLMs, and retrieval techniques for AI search and ranking",
+      "Built and evaluated Python ML pipelines for RAG and NLP workflows",
+      "Turned research findings into production-ready features with ML engineers"
     ]
   },
   {
-    type: "work",
-    role: "Freelance Video Editor & Graphic Designer",
-    org: "Self-employed · Remote",
-    dates: "Mar 2026 — Apr 2026",
-    bullets: [
-      "Edited promotional and social media videos to support marketing content",
-      "Designed graphics for social media posts and marketing materials",
-      "Delivered content on a recurring schedule for consistent posting"
-    ]
-  },
-  {
-    type: "leadership",
     role: "Legislative Councilor",
-    org: "CICS Student Government · DLSU-D",
-    dates: "Aug 2025 — Present",
+    org: "CICS Student Government, DLSU-D",
+    dates: "Aug '25 – Present",
     bullets: [
-      "Drafted, proposed, and passed ordinances promoting the welfare of the college and its students",
-      "Consulted students and stakeholders to identify issues before drafting legislation",
-      "Reviewed and deliberated on proposed ordinances, monitoring compliance and recommending amendments"
+      "Drafted and passed ordinances promoting student welfare",
+      "Consulted students and stakeholders before drafting legislation",
+      "Reviewed legislation, monitored compliance, and recommended amendments"
     ]
   },
   {
-    type: "leadership",
     role: "Co-Director, Technical & Media Management",
-    org: "CICS Student Government · DLSU-D",
-    dates: "Aug 2025 — May 2026",
+    org: "CICS Student Government, DLSU-D",
+    dates: "Aug '25 – May '26",
     bullets: [
-      "Led a 14-member committee overseeing photo/video documentation and media archiving for events",
-      "Curated and edited visual content for promotional materials, social media, and official publications",
-      "Established media naming, storage, and backup protocols for institutional record-keeping"
+      "Led a 14-member photo/video documentation committee",
+      "Curated and edited visual content for promos and official publications",
+      "Set media naming, storage, and backup protocols"
+    ]
+  },
+  {
+    role: "Freelance Video Editor & Graphic Designer",
+    org: "Self-employed, Remote",
+    dates: "Mar '26 – Apr '26",
+    bullets: [
+      "Edited promotional and social media videos",
+      "Designed marketing graphics on a recurring schedule"
     ]
   }
 ];
@@ -130,94 +122,61 @@ export const experience: Experience[] = [
 export const projects: Project[] = [
   {
     name: "AniSkolar",
-    kind: "Undergraduate Capstone",
-    dates: "May 2026 — Present",
-    summary:
-      "Scholarship management system for De La Salle University – Dasmariñas, simplifying student applications and automating administrative review.",
+    dates: "May '26 – Present",
+    subtitle: "Scholarship Management System · Undergraduate Capstone",
     bullets: [
-      "REST API with Express and MongoDB, GridFS document storage, and Clerk session validation",
-      "Microsoft SSO with dynamic student/admin portal routing based on profile status",
-      "Automated report generation and data tracking to cut paperwork and entry errors",
-      "Student dashboard with GPA and duty-hour calculators for real-time progress"
+      "Full-stack scholarship platform with automated review workflows",
+      "REST API (Express + MongoDB) with GridFS document storage",
+      "Microsoft SSO with student/admin portal routing",
+      "Student dashboard with real-time GPA / duty-hour tracking"
     ],
-    stack: ["React", "TypeScript", "Vite", "Tailwind", "Express", "MongoDB", "Clerk"]
+    stack: ["React", "TypeScript", "Vite", "Tailwind", "Node.js", "MongoDB", "Clerk Auth"]
   },
   {
     name: "Travelogue",
-    kind: "Personal Project",
-    dates: "Dec 2025",
-    summary:
-      "Travel planning companion that brings flight search, hotel booking, and itinerary management into one app.",
+    dates: "Dec '25",
+    subtitle: "Travel Planning Companion · Personal Project",
     bullets: [
-      "Real-time flight pricing and hotel data via SerpAPI and TripAdvisor API",
-      "Interactive itinerary with Leaflet Maps for destinations and nearby landmarks",
-      "Responsive, WCAG 2.1 accessible UI with print-friendly confirmations",
-      "Email/password and social login (Google, Facebook, Apple)"
+      "Flight search, hotel booking, and itinerary in one app",
+      "Live pricing via SerpAPI & TripAdvisor, mapped with Leaflet",
+      "WCAG 2.1 accessible, social login and print views"
     ],
-    stack: ["React", "React Router", "Axios", "Leaflet", "SerpAPI"]
+    stack: ["React", "React Router", "Leaflet", "Axios"]
   }
 ];
 
-export const skills = [
+export const education = [
   {
-    group: "Web Development",
-    items: "React.js, TypeScript, Node.js, Express.js, PHP, C#, .NET, Tailwind CSS"
-  },
-  {
-    group: "AI & Data",
-    items: "Python, ML pipelines, RAG & NLP workflows, LLM benchmarking and evaluation"
-  },
-  {
-    group: "Databases & Tools",
-    items: "MongoDB, Git, GitHub, Microsoft Excel, Microsoft Word"
-  },
-  {
-    group: "Media & Design",
-    items: "Video and image editing, photography, videography, Adobe Creative Suite"
-  },
-  {
-    group: "Leadership",
-    items:
-      "Organizational leadership, legislative drafting & ordinance review, committee management"
-  }
-];
-
-export const education: Education[] = [
-  {
-    years: "2023 — 2027",
+    stage: "COLLEGE",
     school: "De La Salle University – Dasmariñas",
-    note: "BS Information Technology, Web Development Track",
-    stats: [
-      { highlight: "3.64", text: " / 4.0 GPA" },
-      { text: "First Honors Dean’s Lister, 2023 — Present" }
-    ]
+    note: "BS Information Technology, Web Development · 2023–2027 · Cumulative GPA: 3.64 · First Honors Dean's Lister"
   },
   {
-    years: "2021 — 2023",
-    school: "Emilio Aguinaldo College – Cavite",
-    note: "Senior High School, STEM Strand",
-    stats: [{ text: "With Honors, Grades 11 & 12" }]
+    stage: "SHS",
+    school: "Emilio Aguinaldo College",
+    note: "STEM Strand · 2021–2023 · With Honors (Grades 11 & 12), 94 average"
   }
 ];
 
-export const certifications: Listed[] = [
-  { name: "TOEIC 900 — C1 Advanced", meta: "Princeton Assessments" },
-  { name: "Network & Cybersecurity Fundamentals" },
-  { name: "Wonders and Perils of AI & Emerging Technology" },
-  { name: "Cisco Packet Tracer" },
-  { name: "Python Essentials 1" }
+export const certifications = [
+  "TOEIC — 900, C1 Advanced",
+  "Network & Cybersecurity Fundamentals",
+  "Wonders and Perils of AI & Emerging Technology",
+  "Cisco Packet Tracer",
+  "Python Essentials 1"
 ];
 
-export const awards: Listed[] = [
-  { name: "Excellence in Leadership: Legislative Councilor", meta: "2026" },
-  { name: "Excellence in Leadership: Committee Member of the Year", meta: "2025" }
+export const awards = [
+  "Dean's Lister, Consistent (2023–Present)",
+  "Excellence in Leadership — Legislative Councilor, 2026",
+  "Excellence in Leadership — Committee Member of the Year, 2025"
 ];
 
 export const navLinks = [
   { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "skills", label: "Skills" },
   { id: "education", label: "Education" },
   { id: "contact", label: "Contact" }
 ];

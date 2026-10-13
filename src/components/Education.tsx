@@ -1,18 +1,6 @@
-import { awards, certifications, education, type Listed } from "../data/content";
-import { Reveal, Section } from "./Reveal";
-
-function ListedItems({ items }: { items: Listed[] }) {
-  return (
-    <ul className="cert-list">
-      {items.map((item) => (
-        <li key={item.name}>
-          {item.name}
-          {item.meta && <span>{item.meta}</span>}
-        </li>
-      ))}
-    </ul>
-  );
-}
+import { awards, certifications, education } from "../data/content";
+import { Reveal } from "./Reveal";
+import { Section } from "./Section";
 
 export function Education() {
   return (
@@ -21,29 +9,29 @@ export function Education() {
         <div className="edu-list">
           {education.map((item) => (
             <div className="edu-item" key={item.school}>
-              <div className="edu-year mono">{item.years}</div>
+              <div className="stage mono">{item.stage}</div>
               <div>
                 <div className="school">{item.school}</div>
                 <div className="note">{item.note}</div>
-                <div className="edu-stats">
-                  {item.stats.map((stat) => (
-                    <span key={stat.text}>
-                      {stat.highlight && <strong>{stat.highlight}</strong>}
-                      {stat.text}
-                    </span>
-                  ))}
-                </div>
               </div>
             </div>
           ))}
         </div>
 
         <div className="cert-col">
-          <h4 className="mono">Certifications</h4>
-          <ListedItems items={certifications} />
+          <h4 className="side-caption mono">CERTIFICATIONS</h4>
+          <ul className="cert-list">
+            {certifications.map((cert) => (
+              <li key={cert}>{cert}</li>
+            ))}
+          </ul>
 
-          <h4 className="mono">Awards</h4>
-          <ListedItems items={awards} />
+          <h4 className="side-caption mono">ACHIEVEMENTS &amp; AWARDS</h4>
+          <ul className="cert-list">
+            {awards.map((award) => (
+              <li key={award}>{award}</li>
+            ))}
+          </ul>
         </div>
       </Reveal>
     </Section>

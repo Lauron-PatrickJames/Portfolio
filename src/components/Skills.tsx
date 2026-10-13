@@ -1,14 +1,21 @@
 import { skills } from "../data/content";
-import { Reveal, Section } from "./Reveal";
+import { Reveal } from "./Reveal";
+import { Section } from "./Section";
 
 export function Skills() {
   return (
-    <Section id="skills" index="04" title="Skills">
-      <Reveal className="skills-table">
+    <Section id="skills" index="02" title="Skills">
+      <Reveal className="skills-grid">
         {skills.map((skill) => (
-          <div className="skill-row" key={skill.group}>
-            <h4 className="mono">{skill.group}</h4>
-            <p>{skill.items}</p>
+          <div className="skill-group" key={skill.group}>
+            <h4>{skill.group}</h4>
+            <div className="chip-row">
+              {skill.items.map((item) => (
+                <span className="chip" key={item}>
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         ))}
       </Reveal>

@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { about, socials } from "../data/content";
-import { Reveal, Section } from "./Reveal";
+import { Reveal } from "./Reveal";
+import { Section } from "./Section";
 
 const intervalMs = 4000;
 
@@ -19,11 +20,6 @@ function Carousel() {
     return () => window.clearInterval(id);
   }, [paused, cycle, slides.length]);
 
-  const goTo = useCallback((next: number) => {
-    setIndex(next);
-    setCycle((c) => c + 1);
-  }, []);
-
   return (
     <aside className="about-side">
       <div
@@ -37,26 +33,23 @@ function Carousel() {
             className={`carousel-slide ${i === index ? "is-active" : ""}`.trim()}
             src={slide.src}
             alt={slide.alt}
-            loading={i === 0 ? "eager" : "lazy"}
           />
         ))}
+
         <div className="carousel-dots">
           {slides.map((slide, i) => (
-            <button
+            <span
               key={slide.src}
-              type="button"
               className={i === index ? "is-active" : undefined}
-              aria-label={`Show photo ${i + 1} of ${slides.length}`}
-              aria-current={i === index}
-              onClick={() => goTo(i)}
+              onClick={() => {
+                setIndex(i);
+                setCycle((c) => c + 1);
+              }}
             />
           ))}
         </div>
       </div>
-      <p className="placard mono">
-        <span>Off-screen</span>
-        <span>{slides[index].label}</span>
-      </p>
+      <p className="side-caption mono">{slides[index].label}</p>
     </aside>
   );
 }
@@ -66,17 +59,20 @@ export function About() {
     <Section id="about" index="01" title="About">
       <Reveal className="about-grid">
         <div className="about-main">
-          <p className="lede">
-            {about.lede.before}
-            <span className="serif-it">{about.lede.accent}</span>
-            {about.lede.after}
-          </p>
-          <p>{about.body}</p>
+          {about.paragraphs.map((text) => (
+            <p key={text}>{text}</p>
+          ))}
 
           <div className="social-row">
             {socials.map((social) => (
-              <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer">
-                {social.label} <span aria-hidden="true">↗</span>
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+              >
+                {social.short}
               </a>
             ))}
           </div>

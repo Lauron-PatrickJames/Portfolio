@@ -6,7 +6,6 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Projects } from "./components/Projects";
 import { Skills } from "./components/Skills";
-import { profile } from "./data/content";
 import { useScrollY } from "./hooks/useScrollY";
 
 export default function App() {
@@ -19,19 +18,19 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <Skills />
         <Experience />
         <Projects />
-        <Skills />
         <Education />
         <Contact />
       </main>
 
       <footer>
-        <div className="foot-line mono">
-          <span>
-            Designed &amp; built by {profile.firstName} {profile.lastName}
-          </span>
-          <span>© {new Date().getFullYear()}</span>
+        <div className="foot-line">
+          <div>
+            Designed by <strong>Patrick James Lauron</strong>
+          </div>
+          <div>© {new Date().getFullYear()}</div>
         </div>
       </footer>
 
